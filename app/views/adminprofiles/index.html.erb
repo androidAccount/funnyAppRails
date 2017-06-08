@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Adminprofiles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @adminprofiles.each do |adminprofile| %>
+      <tr>
+        <td><%= link_to 'Show', adminprofile %></td>
+        <td><%= link_to 'Edit', edit_adminprofile_path(adminprofile) %></td>
+        <td><%= link_to 'Destroy', adminprofile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Adminprofile', new_adminprofile_path %>

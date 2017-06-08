@@ -1,0 +1,2 @@
+class AddCategoryTable < ApplicationRecord
+end

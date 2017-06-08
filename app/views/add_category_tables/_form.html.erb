@@ -1,0 +1,17 @@
+<%= form_for(add_category_table) do |f| %>
+  <% if add_category_table.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(add_category_table.errors.count, "error") %> prohibited this add_category_table from being saved:</h2>
+
+      <ul>
+      <% add_category_table.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

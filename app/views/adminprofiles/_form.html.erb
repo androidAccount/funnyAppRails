@@ -1,0 +1,17 @@
+<%= form_for(adminprofile) do |f| %>
+  <% if adminprofile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(adminprofile.errors.count, "error") %> prohibited this adminprofile from being saved:</h2>
+
+      <ul>
+      <% adminprofile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
