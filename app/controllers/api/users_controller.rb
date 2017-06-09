@@ -12,7 +12,8 @@ class Api::UsersController < ApplicationController
     end
 
     @user = User.find_by(username: params[:username])
-
+   
+	
     if @user.nil?
       render json: { message: "username is not valid" }, status: 400
       return
