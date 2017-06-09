@@ -28,7 +28,7 @@ class Api::Users::RegistrationsController < Devise::RegistrationsController
       render json: { message: "passwords doesn't match" }, status: 400
       return
     elsif User.find_by_username(username.downcase)
-      render json: { message: "username is already taken" }, status: 400
+      render json: { message: "username is already taken" }, status: 405
       return
     elsif not user_type.in?(['profile', 'admin'])
       render json: { message: "valid types are: profile" }, status: 400
@@ -60,7 +60,7 @@ class Api::Users::RegistrationsController < Devise::RegistrationsController
           return
         end
     else
-      render json: { message: "cannot create user, unkown error" }, status: 400
+      render json: { message: "cannot create user, unkown error" }, status: 405
       return
     end
   end

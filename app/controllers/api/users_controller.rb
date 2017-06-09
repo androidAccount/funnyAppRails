@@ -32,7 +32,7 @@ class Api::UsersController < ApplicationController
       return
     else
       smscode=params[:sms_code].to_s
-      @get_retrive=RegistrationCode.find_by(sms_code: smscode, user_id: current_resource_owner.id)
+      @get_retrive=RegistrationCode.find_by(sms_code: smscode, user_id: @user.id)
       if @get_retrive.nil?
        render json:{message:"the sercurity code is incorrect"},status:400
        return

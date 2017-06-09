@@ -2,7 +2,7 @@
 lock "3.8.1"
 
 set :application, "funnyApp"
-set :repo_url, "https://github.com/husseinoj/funnyAppRails.git"
+set :repo_url, "/opt/gitRepository/funnyApp.git"
 set :deploy_to, '/home/deploy/funnyApp'
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
