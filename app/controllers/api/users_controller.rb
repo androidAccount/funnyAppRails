@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
 
-  before_action :doorkeeper_authorize! , except: [ :activate_account , :resend_activation_code]
+  before_action :doorkeeper_authorize! , except: [ :activate_account , :resend_activation_code,:send_new_password]
   before_action :admin_authorize! ,only:[:index]
 
 
@@ -292,7 +292,7 @@ class Api::UsersController < ApplicationController
 
 
     new_password = SecureRandom.hex(5)
-    @user = User.find(current_resource_owner.id)
+    @user = User.find(params[:username])
     if @user.update(password: new_password, password_confirmation: new_password)
       ## 1. Revoke all tokens
       @access_tokens = Doorkeeper::AccessToken.where(resource_owner_id: @user.id)
