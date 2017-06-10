@@ -303,7 +303,7 @@ class Api::UsersController < ApplicationController
       ## 3. Send the new password via SMS
       #send_sms(@user.username, "Your Password is: #{new_password}")
       ## 4. Finished!
-      render json: { message: "password is successfully sent!"+new_password }, status: :created
+      render json: { message: "password is successfully sent!",password:new_password }, status: :created
     else
       render json: { message: "unkown error" }, status: 400
     end
