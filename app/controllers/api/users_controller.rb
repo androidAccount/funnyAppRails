@@ -292,7 +292,7 @@ class Api::UsersController < ApplicationController
 
 
     new_password = SecureRandom.hex(5)
-    @user = User.find(params[:username])
+    @user = User.find_by(username: params[:username])
     if @user.update(password: new_password, password_confirmation: new_password)
       ## 1. Revoke all tokens
       @access_tokens = Doorkeeper::AccessToken.where(resource_owner_id: @user.id)
