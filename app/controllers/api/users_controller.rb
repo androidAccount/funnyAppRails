@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
 
-  before_action :doorkeeper_authorize! , except: [ :activate_account , :resend_activation_code,:send_new_password]
+  before_action :doorkeeper_authorize! , except: [ :activate_account , :resend_activation_code, :send_new_password]
   before_action :admin_authorize! ,only:[:index]
 
 
@@ -35,7 +35,7 @@ class Api::UsersController < ApplicationController
       smscode=params[:sms_code].to_s
       @get_retrive=RegistrationCode.find_by(sms_code: smscode, user_id: @user.id)
       if @get_retrive.nil?
-       render json:{message:"the sercurity code is incorrect"},status:400
+       render json:{message:"the sercurity code is incorrect"},status:405
        return
       end
       logger.info "################ The Registration is this: #{smscode} = #{@get_retrive.sms_code}  ########################"
@@ -120,7 +120,7 @@ class Api::UsersController < ApplicationController
                     first_name: @profile.first_name,
                     last_name: @profile.last_name,
                     avatar_url: @profile.image.url,
-                    national_id: @profile.national_code,
+                    national_code: @profile.national_code,
                     gender: @profile.gender ? "true" : "false",
                     username: current_resource_owner.username,
                     user_type:current_resource_owner.user_type}, status: :ok
