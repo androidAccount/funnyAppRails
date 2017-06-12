@@ -224,7 +224,7 @@ class Api::UsersController < ApplicationController
     if @user.user_type == "profile"
       @profile=Profile.new
       if @profile.update(user_profile_params)
-        render json: { profile: @profile },status: 200
+        render json: {@profile },status: 200
       else
         render json: @profile.errors, status: :unprocessable_entity
       end
