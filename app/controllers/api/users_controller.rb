@@ -222,15 +222,16 @@ class Api::UsersController < ApplicationController
    # @profile = "#{user_type}_profile".camelize.constantize.find(profile_id)
     @user = current_resource_owner
     if @user.user_type == "profile"
-     @profile=@user.profiles
+     @profile=Profile.find_by(user_id: @user.id)
       if @profile.update(user_profile_params)
         render json: @profile ,status: 200
+
       else
         render json: @profile.errors, status: :unprocessable_entity
       end
     else
-      @profile=Adminprofile.new
-      @profile=Profile.new
+      @profile=Profile.find_by(user_id: @user.id)
+      
       if @profile.update(admin_profile_params)
         render json: { profile: @profile },status: 200
       else
