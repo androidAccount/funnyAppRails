@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 	   }
 
     #User
-    match '/userList', to:'users#userList', via: 'get'
+  
     match '/activate_account', to: 'users#activate_account', via: 'post'
     match '/resend_activation_code', to: 'users#resend_activation_code', via: 'post'
     match '/change_password', to: 'users#change_my_password', via: 'put'
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     match 'article/upload_avatar/:id', to: 'articles#upload_avatar', via: 'put'
   match 'article/sort', to: 'articles#index', via: 'post'
   match 'article/search', to: 'articles#search', via: 'post'
-
+  match '/userList', to:'articles#userList', via: 'get'
     resources :favorites
     resources :add_category_tables
   end

@@ -2,11 +2,20 @@
 class Api::ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy,:upload_avatar]
   before_action :increase_article_view, only: [:show]
-  before_action :doorkeeper_authorize!
-  before_action :profile_authorize!,except:[:create,:destroy,:update,:upload_avatar]
+  before_action :doorkeeper_authorize!,except:[:userList]
+  before_action :profile_authorize!,except:[:create,:destroy,:update,:upload_avatar,:userList]
   before_action :admin_authorize!, only:[:create,:destroy,:update,:upload_avatar]
   # GET /articles
   # GET /articles.json
+
+  def userList
+    arr=[]
+    arr.push(name: "Hussein")
+    arr.push(name:"ojhaghi")
+    arr.push(name: "jafari")
+    render json: arr, status:200
+  end  
+
   def index
 
     if params[:page] and params[:per_page]
