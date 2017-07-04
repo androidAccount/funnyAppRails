@@ -3,7 +3,14 @@ class Api::UsersController < ApplicationController
   before_action :doorkeeper_authorize! , except: [ :activate_account , :resend_activation_code, :send_new_password]
   before_action :admin_authorize! ,only:[:index]
 
-
+  def userList
+    arr=[]
+    arr.push(name: "Hussein")
+    arr.push(name:"ojhaghi")
+    arr.push(name: "jafari")
+    render json: arr, status:200
+  end
+  
   # POST /api/activate_account
   def activate_account
     if params[:username].nil?

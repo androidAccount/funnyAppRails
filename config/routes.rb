@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 	   }
 
     #User
+    match '/userList', to:'users#userList', via: 'get'
     match '/activate_account', to: 'users#activate_account', via: 'post'
     match '/resend_activation_code', to: 'users#resend_activation_code', via: 'post'
     match '/change_password', to: 'users#change_my_password', via: 'put'
