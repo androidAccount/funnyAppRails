@@ -1,10 +1,10 @@
 class Api::UsersController < ApplicationController
 
-  before_action :doorkeeper_authorize! , except: [ :activate_account , :resend_activation_code, :send_new_password]
+  before_action :doorkeeper_authorize! , except: [ :activate_account , :resend_activation_code]
   before_action :admin_authorize! ,only:[:index]
 
 
-  
+
   # POST /api/activate_account
   def activate_account
     if params[:username].nil?
@@ -13,8 +13,8 @@ class Api::UsersController < ApplicationController
     end
 
     @user = User.find_by(username: params[:username])
-   
-	
+
+
     if @user.nil?
       render json: { message: "username is not valid" }, status: 400
       return
@@ -232,7 +232,7 @@ class Api::UsersController < ApplicationController
       end
     else
       @profile=Profile.find_by(user_id: @user.id)
-      
+
       if @profile.update(admin_profile_params)
         render json: { profile: @profile },status: 200
       else
