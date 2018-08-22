@@ -17,8 +17,8 @@ use_refresh_token
 skip_authorization do
    true
  end
-
-  grant_flows %w(authorization_code implicit password client_credentials)
+ grant_flows %w(password)
+  #grant_flows %w(authorization_code implicit password client_credentials)
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
   # admin_authenticator do
   #   # Put your admin authentication logic here.
